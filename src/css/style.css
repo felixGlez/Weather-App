@@ -1,0 +1,123 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+:root{
+  --font-general: 'Manrope', sans-serif;
+}
+body{
+  margin: 0;
+  /* background-color: #84efff; */
+  background-color: #f9e8ca;
+  font-family: var(--font-general);
+}
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main__title{
+  text-align: center;
+  color: #a96607;
+  font-size: 3rem;
+  text-shadow: 3px 3px 0px white;
+}
+.main__title--subtitle{
+  color: #000;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.main__select{
+  padding: 5px 10px;
+  background-color: white;
+  border: 4px solid black;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0px 0px rgb(0 0 0);
+  margin-bottom: 20px;
+  outline: none;
+  transition: 0.1s;
+}
+.main__select:hover{
+  box-shadow: 4px 4px 0px 0px rgb(0 0 0);
+  cursor: pointer;
+}
+.main__button{
+  padding: 7px 30px;
+  border: 4px solid black;
+  background-color: #a96607;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 20px;
+}
+.main__button:hover{
+  background-color: black;
+}
+.main__dog-img-container{
+  width: 50%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 50px;
+}
+.main__dog-img{
+  width: 100%;
+  border-radius: 90px;
+}
+.main__like-button{
+  background-color: #fff;
+  border: 3px solid black;
+  border-radius: 50%;
+  color: #000;
+  font-size: 1.7rem;
+  height: 50px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  transition: .2s;
+  width: 50px;
+  box-shadow: 4px 4px 0px 0px rgb(0 0 0);
+}
+.main__like-button:hover{
+  background-color: #ff85eb;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0);
+}
+.main--fav-imgs{
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px 100px;
+  align-items: flex-start;
+  position: relative;
+}
+.main--fav-imgs img{
+  width: 300px;
+  border-radius: 30px;
+  padding: 10px;
+}
+.main h2{
+  margin-bottom: 10px;
+  letter-spacing: 10px;
+  color: #a96607;
+  text-align: center;
+}
+#favs{
+  padding-top: 100px;
+}
+.main__dislike-button{
+  right: 30px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+}
+.main__fav-img-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+}
