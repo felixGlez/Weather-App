@@ -4,9 +4,67 @@
   box-sizing: border-box;
 }
 :root{
-  --font-general: 'Manrope', sans-serif;
+  --font-general: 'Poppins', sans-serif;
+  --font-color-secondary: #a4a4a4
 }
 body{
   margin: 0;
   font-family: var(--font-general);
+}
+h1{
+  font-weight: 300;
+}
+.main{
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* LEFT */
+.main__current{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.main__current--city{
+  background-color: white;
+  padding: 30px;
+}
+.main__current--city h1{
+  font-size: 3rem;
+  font-weight: 600;
+}
+.main__current--forecast{
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  color: var(--font-color-secondary);
+  padding: 30px;
+}
+.main__current--forecast--hours{
+  display: flex;
+}
+.main__current--forecast--hours--box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main__current--others{
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+/* RIGHT */
+.main__forecast{
+  padding: 30px;
 }
