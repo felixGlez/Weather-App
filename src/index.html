@@ -17,52 +17,54 @@
     <div class="main">
       <div class="main__current">
         <div class="main__current--city">
-          <h2>Madrid</h2>
-          <h4>Probabilidad de lluvia</h4>
-          <h1>31º</h1>
-        </div>
-        <div class="main__current--forecast">
-          <h4>TODAY'S FORECAST</h4>
-          <div class="main__current--forecast--hours">
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
-            <div class="main__current--forecast--hours--box">
-              <h4>6:00 AM</h4>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
-              <h3>25º</h3>
-            </div>
+          <div>
+            <h2 id="city"></h2>
+            <h4 id="temp-min" class="subtitle"></h4>
+            <h4 id="temp-max" class="subtitle"></h4>
+            <h1 id="degrees"></h1>
           </div>
+          <div>
+            <img src="" alt="" id="main-icon">
+          </div>
+        </div>
+        <div class="main__current--forecast" id="main-current-forecast">
+          <h4>TODAY'S FORECAST</h4>
         </div>
         <div class="main__current--others">
           <h4>AIR CONDITIONS</h4>
+          <div class="main__current--others--container">
+            <div class="main__current--others--box">
+              <h4>Real Feel</h4>
+              <h3 id="real-feel">30º</h3>
+            </div>
+            <div class="main__current--others--box">
+              <h4>Wind</h4>
+              <h3 id="wind">30º</h3>
+            </div>
+          </div>
+          <div class="main__current--others--container">
+            <div class="main__current--others--box">
+              <h4>Humidity</h4>
+              <h3 id="humidity">30º</h3>
+            </div>
+            <div class="main__current--others--box">
+              <h4>Clouds</h4>
+              <h3 id="clouds">30º</h3>
+            </div>
+          </div>
         </div>
 
       </div>
       <div class="main__forecast">
         <h4>7-DAY FORECAST</h4>
+        <div class="main__forecast--container">
+          <div class="main__forecast--box">
+            <h4>Today</h4>
+            <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="">
+            <h4>Sunny</h4>
+            <h4>34/33</h4>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <img src="./assets/images/weather-web-light-home.png" alt=""> -->

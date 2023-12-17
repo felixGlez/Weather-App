@@ -16,27 +16,38 @@ h1{
 }
 .main{
   width: 100%;
-  max-width: 1920px;
+  max-width: 1400px;
   margin: auto;
   padding-top: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
+}
+.subtitle{
+  font-weight: 400;
+  margin: 10px 0px;
+  color: var(--font-color-secondary);
 }
 
 /* LEFT */
+#main-icon{
+  width: 250px;
+}
 .main__current{
-  width: 40%;
+  width: 63%;
   display: flex;
   flex-direction: column;
 }
 .main__current--city{
-  background-color: white;
+  background-color: #fff;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
 }
-.main__current--city h1{
+.main__current--city h1, h2{
   font-size: 3rem;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 .main__current--forecast{
   display: flex;
@@ -55,6 +66,13 @@ h1{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  margin-right: 5px;
+  border-radius: 10px;
+  padding: 10px 0px;
+}
+.main__current--forecast--hours--box h4, h3{
+  margin: 0;
 }
 .main__current--others{
   display: flex;
@@ -62,9 +80,29 @@ h1{
   background-color: #f4f4f4;
   border-radius: 15px;
   padding: 30px;
+  color: var(--font-color-secondary);
 }
+
 
 /* RIGHT */
 .main__forecast{
+  width: 35%;
+  display: flex;
+  flex-direction: column;
   padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+}
+.main__current--others--container{
+  display: flex;
+  justify-content: space-around;
+}
+.main__forecast--box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.main__forecast--box img{
+  width: 100px;
 }
