@@ -49,6 +49,10 @@ const realFeelElement = document.getElementById('real-feel');
 const windElement = document.getElementById('wind');
 const humidityElement = document.getElementById('humidity');
 const cloudsElement = document.getElementById('clouds');
+// 4º
+const forecastContainerElement = document.getElementById(
+  'main-forecast-container'
+);
 
 //ASSETS
 const BASE_URL = 'https://api.openweathermap.org/';
@@ -78,6 +82,7 @@ const fetchData = async url => {
 //pintar clima actual
 const printCurrentWeather = async () => {
   const data = await fetchData(API_URLS.currentWeather_madrid);
+  console.log(data);
 
   cityElement.textContent = data.name;
   tempMinElement.textContent = `Min. Temperature: ${Math.round(
@@ -90,7 +95,7 @@ const printCurrentWeather = async () => {
   mainIconElement.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
 
   getCurrentForecast();
-  getOthers(data);
+  printOthers(data);
 };
 
 //obtener pronóstico de hoy
@@ -99,6 +104,7 @@ const getCurrentForecast = async () => {
   const todayForecast = data.list.slice(0, 6);
 
   printCurrentForecast(todayForecast);
+  get5DaysForecast(data);
 };
 
 //pintar pronóstico de hoy
@@ -139,12 +145,54 @@ function getFormattedTime(timestamp) {
 }
 
 //obtener otros datos
-const getOthers = async data => {
-  console.log(data);
+const printOthers = async data => {
   realFeelElement.textContent = `${Math.round(data.main.feels_like)}º`;
   windElement.textContent = `${data.wind.speed} km/h`;
   humidityElement.textContent = `${data.main.humidity}%`;
   cloudsElement.textContent = `${data.clouds.all}%`;
+};
+
+//obtener datos 5 DÍAS
+const get5DaysForecast = async data => {
+  const daysForecast = [];
+
+  for (let i = 0; i < data.list.length; i += 8) {
+    daysForecast.push(data.list[i]);
+    //console.log(data.list[i].dt_txt);
+  }
+
+  print5DaysForecast(daysForecast);
+};
+
+//pintar datos 6 DÍAS
+const print5DaysForecast = async data => {
+  console.log(data);
+  const newContainer = document.createElement('div');
+  newContainer.classList.add('main__forecast--container');
+
+  data.forEach(day => {
+    //box
+    const newBox = document.createElement('div');
+    newBox.classList.add('main__forecast--box');
+    //day
+    const newDay = document.createElement('h4');
+    newDay.textContent = day.dt_txt;
+    //img
+    const newImg = document.createElement('img');
+    newImg.src = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+    //sky
+    const newSky = document.createElement('h4');
+    newSky.textContent = day.weather[0].main;
+    //degrees
+    const newH4 = document.createElement('h4');
+    newH4.textContent = `${Math.round(day.main.temp_max)}º/${Math.round(
+      day.main.temp_min
+    )}º`;
+
+    newBox.append(newDay, newImg, newSky, newH4);
+    newContainer.append(newBox);
+  });
+  forecastContainerElement.append(newContainer);
 };
 
 printCurrentWeather();
