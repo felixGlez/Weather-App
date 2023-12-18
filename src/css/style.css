@@ -5,11 +5,12 @@
 }
 :root{
   --font-general: 'Poppins', sans-serif;
-  --font-color-secondary: #a4a4a4
+  --font-color-secondary: #959ba3;
 }
 body{
   margin: 0;
   font-family: var(--font-general);
+  background-color: lightskyblue;
 }
 h1{
   font-weight: 300;
@@ -18,10 +19,15 @@ h1{
   width: 100%;
   max-width: 1400px;
   margin: auto;
-  padding-top: 100px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
+  border-radius: 30px;
+  padding: 25px;
+  background-color: #f5f5f5;
+  position: relative;
+  top: 100px;
+  box-shadow: 7px 8px 22px 0px #3636364f;
 }
 .subtitle{
   font-weight: 400;
@@ -39,7 +45,6 @@ h1{
   flex-direction: column;
 }
 .main__current--city{
-  background-color: #fff;
   padding: 30px;
   display: flex;
   justify-content: space-between;
@@ -52,24 +57,29 @@ h1{
 .main__current--forecast{
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
+  background-color: #eaecef;
   border-radius: 15px;
   margin-bottom: 30px;
   color: var(--font-color-secondary);
   padding: 30px;
 }
 .main__current--forecast--hours{
+  width: 100%;
   display: flex;
 }
 .main__current--forecast--hours--box{
+  width: 16%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  border-right: 1px solid gainsboro;
   margin-right: 5px;
   border-radius: 10px;
   padding: 10px 0px;
+}
+.main__current--forecast--hours--box h3{
+  color: black;
 }
 .main__current--forecast--hours--box h4, h3{
   margin: 0;
@@ -77,10 +87,14 @@ h1{
 .main__current--others{
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
+  background-color: #eaecef;
   border-radius: 15px;
   padding: 30px;
   color: var(--font-color-secondary);
+}
+.main__current--others--container{
+  display: flex;
+  justify-content: space-around;
 }
 
 
@@ -90,19 +104,20 @@ h1{
   display: flex;
   flex-direction: column;
   padding: 30px;
-  background-color: #f4f4f4;
+  background-color: #eaecef;
   border-radius: 15px;
-}
-.main__current--others--container{
-  display: flex;
-  justify-content: space-around;
+  color: var(--font-color-secondary)
 }
 .main__forecast--box{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 10px 0px;
 }
 .main__forecast--box img{
   width: 100px;
+}
+.sky{
+  color: black
 }

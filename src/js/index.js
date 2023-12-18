@@ -136,13 +136,13 @@ const printCurrentForecast = async forecast => {
 };
 
 //formatear hora
-function getFormattedTime(timestamp) {
+const getFormattedTime = timestamp => {
   const fecha = new Date(timestamp);
   return fecha.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
   });
-}
+};
 
 //obtener otros datos
 const printOthers = async data => {
@@ -176,13 +176,14 @@ const print5DaysForecast = async data => {
     newBox.classList.add('main__forecast--box');
     //day
     const newDay = document.createElement('h4');
-    newDay.textContent = day.dt_txt;
+    newDay.textContent = getFormattedDays(day.dt_txt);
     //img
     const newImg = document.createElement('img');
     newImg.src = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
     //sky
     const newSky = document.createElement('h4');
     newSky.textContent = day.weather[0].main;
+    newSky.classList.add('sky');
     //degrees
     const newH4 = document.createElement('h4');
     newH4.textContent = `${Math.round(day.main.temp_max)}º/${Math.round(
@@ -193,6 +194,17 @@ const print5DaysForecast = async data => {
     newContainer.append(newBox);
   });
   forecastContainerElement.append(newContainer);
+};
+
+//formatear días
+const getFormattedDays = date => {
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const objectDay = new Date(date);
+
+  const correctDay = weekDays[objectDay.getDay()];
+
+  return correctDay;
 };
 
 printCurrentWeather();
