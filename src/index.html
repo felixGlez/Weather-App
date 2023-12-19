@@ -14,7 +14,27 @@
   </head>
   <body>
 
-    <div class="main">
+    <div class="wrapper">
+      <div class="nav-bar">
+          <div class="logo">
+            <img src="./assets/images/logo.png" alt="">
+          </div>
+          <div class="cities">
+            <div class="cities__city">
+              <img src="./assets/images/madrid.png" alt="">
+              <h4>Madrid</h4>
+            </div>
+            <div class="cities__city">
+              <img src="./assets/images/tokyo.png" alt="">
+              <h4>Tokyo</h4>
+            </div>
+            <div class="cities__city">
+              <img src="./assets/images/london.png" alt="">
+              <h4>London</h4>
+            </div> 
+          </div>
+      </div>
+      <div class="main">
       <div class="main__current">
         <div class="main__current--city">
           <div>
@@ -34,20 +54,24 @@
           <h4>AIR CONDITIONS</h4>
           <div class="main__current--others--container">
             <div class="main__current--others--box">
+              <img src="./assets/images/weather-icons/temperature.png" alt="">
               <h4>Real Feel</h4>
               <h3 id="real-feel">30º</h3>
             </div>
             <div class="main__current--others--box">
+              <img src="./assets/images/weather-icons/wind.png" alt="">
               <h4>Wind</h4>
               <h3 id="wind">30º</h3>
             </div>
           </div>
           <div class="main__current--others--container">
             <div class="main__current--others--box">
+              <img src="./assets/images/weather-icons/humidity.png" alt="">
               <h4>Humidity</h4>
               <h3 id="humidity">30º</h3>
             </div>
             <div class="main__current--others--box">
+              <img src="./assets/images/weather-icons/clouds.png" alt="">
               <h4>Clouds</h4>
               <h3 id="clouds">30º</h3>
             </div>
@@ -58,8 +82,10 @@
       <div class="main__forecast" id="main-forecast-container">
         <h4>5-DAY FORECAST</h4>
       </div>
-    </div>
-    <!-- <img src="./assets/images/weather-web-light-home.png" alt=""> -->
+      </div>
+  </div>
+
+  <!-- <img src="./assets/images/weather-icons/4x/01d.png" class="floating-img" id="test" alt=""> -->
 
     <script type="module" src="./js/index.js"></script>
   </body>

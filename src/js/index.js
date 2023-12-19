@@ -53,6 +53,8 @@ const cloudsElement = document.getElementById('clouds');
 const forecastContainerElement = document.getElementById(
   'main-forecast-container'
 );
+const test = document.getElementById('test');
+console.log(test);
 
 //ASSETS
 const BASE_URL = 'https://api.openweathermap.org/';
@@ -63,6 +65,27 @@ const madridId = 3117732;
 const API_URLS = {
   currentWeather_madrid: `${BASE_URL}data/2.5/weather?id=${madridId}&appid=${API_KEY}${units_metric}`,
   currentForecast_madrid: `${BASE_URL}data/2.5/forecast?id=${madridId}&appid=${API_KEY}${units_metric}`,
+};
+
+const images = {
+  '01d': './assets/images/weather-icons/4x/01d.png',
+  '01n': './assets/images/weather-icons/4x/01d.png',
+  '02d': './assets/images/weather-icons/4x/02d.png',
+  '02n': './assets/images/weather-icons/4x/02d.png',
+  '03d': './assets/images/weather-icons/4x/03d.png',
+  '03n': './assets/images/weather-icons/4x/03d.png',
+  '04d': './assets/images/weather-icons/4x/04d.png',
+  '04n': './assets/images/weather-icons/4x/04d.png',
+  '09d': './assets/images/weather-icons/4x/05d.png',
+  '09n': './assets/images/weather-icons/4x/05n.png',
+  '10d': './assets/images/weather-icons/4x/06d.png',
+  '10n': './assets/images/weather-icons/4x/06d.png',
+  '11d': './assets/images/weather-icons/4x/07d.png',
+  '11n': './assets/images/weather-icons/4x/07d.png',
+  '13d': './assets/images/weather-icons/4x/08d.png',
+  '13n': './assets/images/weather-icons/4x/08d.png',
+  '50d': './assets/images/weather-icons/4x/09d.png',
+  '50n': './assets/images/weather-icons/4x/09d.png',
 };
 
 //FUNCIONES
@@ -82,7 +105,7 @@ const fetchData = async url => {
 //pintar clima actual
 const printCurrentWeather = async () => {
   const data = await fetchData(API_URLS.currentWeather_madrid);
-  console.log(data);
+  const objectIcon = data.weather[0].icon;
 
   cityElement.textContent = data.name;
   tempMinElement.textContent = `Min. Temperature: ${Math.round(
@@ -92,7 +115,8 @@ const printCurrentWeather = async () => {
     data.main.temp_max
   )}º`;
   degreesElement.textContent = `${Math.round(data.main.temp)}º`;
-  mainIconElement.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+  mainIconElement.src = `${images[objectIcon]}`;
+  mainIconElement.classList.add('main--img');
 
   getCurrentForecast();
   printOthers(data);
@@ -109,11 +133,12 @@ const getCurrentForecast = async () => {
 
 //pintar pronóstico de hoy
 const printCurrentForecast = async forecast => {
-  //console.log(forecast);
+  console.log(forecast);
   const newDiv = document.createElement('div');
   newDiv.classList.add('main__current--forecast--hours');
 
   forecast.forEach(day => {
+    const objectIcon = day.weather[0].icon;
     //box
     const newBox = document.createElement('div');
     newBox.classList.add('main__current--forecast--hours--box');
@@ -123,7 +148,8 @@ const printCurrentForecast = async forecast => {
     newHour.textContent = horaFormateada;
     //img
     const newImg = document.createElement('img');
-    newImg.src = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+    newImg.src = `${images[objectIcon]}`;
+    newImg.classList.add('forecast--img');
     //degrees
     const newDegrees = document.createElement('h3');
     newDegrees.textContent = `${Math.round(day.main.temp)}º`;
@@ -171,6 +197,7 @@ const print5DaysForecast = async data => {
   newContainer.classList.add('main__forecast--container');
 
   data.forEach(day => {
+    const objectIcon = day.weather[0].icon;
     //box
     const newBox = document.createElement('div');
     newBox.classList.add('main__forecast--box');
@@ -179,7 +206,7 @@ const print5DaysForecast = async data => {
     newDay.textContent = getFormattedDays(day.dt_txt);
     //img
     const newImg = document.createElement('img');
-    newImg.src = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+    newImg.src = `${images[objectIcon]}`;
     //sky
     const newSky = document.createElement('h4');
     newSky.textContent = day.weather[0].main;
