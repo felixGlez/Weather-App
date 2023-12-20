@@ -50,21 +50,29 @@ const windElement = document.getElementById('wind');
 const humidityElement = document.getElementById('humidity');
 const cloudsElement = document.getElementById('clouds');
 // 4º
-const forecastContainerElement = document.getElementById(
-  'main-forecast-container'
-);
-const test = document.getElementById('test');
-console.log(test);
+const forecastContainerElement = document.getElementById('main-forecast');
+// nav-bar
+const citiesElement = document.getElementById('cities');
+//dark-mode
+const darkModeBtn = document.getElementById('btn-dark-mode');
 
 //ASSETS
 const BASE_URL = 'https://api.openweathermap.org/';
 const API_KEY = '92b37db5e80c18e50fcf3050f58c1197';
 const units_metric = '&units=metric';
 const madridId = 3117732;
+const londonId = 2643743;
+const tokyoId = 1850147;
 
 const API_URLS = {
   currentWeather_madrid: `${BASE_URL}data/2.5/weather?id=${madridId}&appid=${API_KEY}${units_metric}`,
   currentForecast_madrid: `${BASE_URL}data/2.5/forecast?id=${madridId}&appid=${API_KEY}${units_metric}`,
+
+  currentWeather_tokyo: `${BASE_URL}data/2.5/weather?id=${tokyoId}&appid=${API_KEY}${units_metric}`,
+  currentForecast_tokyo: `${BASE_URL}data/2.5/forecast?id=${tokyoId}&appid=${API_KEY}${units_metric}`,
+
+  currentWeather_london: `${BASE_URL}data/2.5/weather?id=${londonId}&appid=${API_KEY}${units_metric}`,
+  currentForecast_london: `${BASE_URL}data/2.5/forecast?id=${londonId}&appid=${API_KEY}${units_metric}`,
 };
 
 const images = {
@@ -89,7 +97,6 @@ const images = {
 };
 
 //FUNCIONES
-
 //petición
 const fetchData = async url => {
   try {
@@ -103,8 +110,8 @@ const fetchData = async url => {
 };
 
 //pintar clima actual
-const printCurrentWeather = async () => {
-  const data = await fetchData(API_URLS.currentWeather_madrid);
+const printCurrentWeather = async city => {
+  const data = await fetchData(API_URLS[`currentWeather_${city}`]);
   const objectIcon = data.weather[0].icon;
 
   cityElement.textContent = data.name;
@@ -118,13 +125,13 @@ const printCurrentWeather = async () => {
   mainIconElement.src = `${images[objectIcon]}`;
   mainIconElement.classList.add('main--img');
 
-  getCurrentForecast();
+  getCurrentForecast(city);
   printOthers(data);
 };
 
 //obtener pronóstico de hoy
-const getCurrentForecast = async () => {
-  const data = await fetchData(API_URLS.currentForecast_madrid);
+const getCurrentForecast = async city => {
+  const data = await fetchData(API_URLS[`currentForecast_${city}`]);
   const todayForecast = data.list.slice(0, 6);
 
   printCurrentForecast(todayForecast);
@@ -136,6 +143,7 @@ const printCurrentForecast = async forecast => {
   console.log(forecast);
   const newDiv = document.createElement('div');
   newDiv.classList.add('main__current--forecast--hours');
+  newDiv.id = 'current-forecast-container';
 
   forecast.forEach(day => {
     const objectIcon = day.weather[0].icon;
@@ -146,6 +154,7 @@ const printCurrentForecast = async forecast => {
     const newHour = document.createElement('h4');
     const horaFormateada = getFormattedTime(day.dt_txt);
     newHour.textContent = horaFormateada;
+    newHour.classList.add('light');
     //img
     const newImg = document.createElement('img');
     newImg.src = `${images[objectIcon]}`;
@@ -153,6 +162,7 @@ const printCurrentForecast = async forecast => {
     //degrees
     const newDegrees = document.createElement('h3');
     newDegrees.textContent = `${Math.round(day.main.temp)}º`;
+    newDegrees.classList.add('bold');
 
     newBox.append(newHour, newImg, newDegrees);
     newDiv.append(newBox);
@@ -195,6 +205,7 @@ const print5DaysForecast = async data => {
   console.log(data);
   const newContainer = document.createElement('div');
   newContainer.classList.add('main__forecast--container');
+  newContainer.id = 'main-forecast-container';
 
   data.forEach(day => {
     const objectIcon = day.weather[0].icon;
@@ -204,6 +215,7 @@ const print5DaysForecast = async data => {
     //day
     const newDay = document.createElement('h4');
     newDay.textContent = getFormattedDays(day.dt_txt);
+    newDay.classList.add('light');
     //img
     const newImg = document.createElement('img');
     newImg.src = `${images[objectIcon]}`;
@@ -216,6 +228,7 @@ const print5DaysForecast = async data => {
     newH4.textContent = `${Math.round(day.main.temp_max)}º/${Math.round(
       day.main.temp_min
     )}º`;
+    newH4.classList.add('bold');
 
     newBox.append(newDay, newImg, newSky, newH4);
     newContainer.append(newBox);
@@ -234,4 +247,45 @@ const getFormattedDays = date => {
   return correctDay;
 };
 
-printCurrentWeather();
+//switch dark/light mode
+const switchMode = () => {
+  document.body.classList.toggle('dark-mode');
+};
+
+//Events
+darkModeBtn.addEventListener('change', switchMode);
+printCurrentWeather('madrid');
+citiesElement.addEventListener('click', event => {
+  const currentForecastContainer = document.getElementById(
+    'current-forecast-container'
+  );
+  const mainForecastContainerElement = document.getElementById(
+    'main-forecast-container'
+  );
+
+  if (event.target.closest('#tokyo')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('tokyo');
+  } else if (event.target.closest('#london')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('london');
+  } else if (event.target.closest('#madrid')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('madrid');
+  }
+});

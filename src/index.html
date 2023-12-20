@@ -19,16 +19,16 @@
           <div class="logo">
             <img src="./assets/images/logo.png" alt="">
           </div>
-          <div class="cities">
-            <div class="cities__city">
+          <div class="cities" id="cities">
+            <div class="cities__city" id="madrid">
               <img src="./assets/images/madrid.png" alt="">
               <h4>Madrid</h4>
             </div>
-            <div class="cities__city">
+            <div class="cities__city" id="tokyo">
               <img src="./assets/images/tokyo.png" alt="">
               <h4>Tokyo</h4>
             </div>
-            <div class="cities__city">
+            <div class="cities__city" id="london">
               <img src="./assets/images/london.png" alt="">
               <h4>London</h4>
             </div> 
@@ -48,40 +48,43 @@
           </div>
         </div>
         <div class="main__current--forecast" id="main-current-forecast">
-          <h4>TODAY'S FORECAST</h4>
+          <h4 class="bold">TODAY'S FORECAST</h4>
         </div>
         <div class="main__current--others">
-          <h4>AIR CONDITIONS</h4>
+          <h4 class="bold">AIR CONDITIONS</h4>
           <div class="main__current--others--container">
             <div class="main__current--others--box">
               <img src="./assets/images/weather-icons/temperature.png" alt="">
-              <h4>Real Feel</h4>
-              <h3 id="real-feel">30º</h3>
+              <h4 class="bold">Real Feel</h4>
+              <h3 class="bold" id="real-feel">30º</h3>
             </div>
             <div class="main__current--others--box">
               <img src="./assets/images/weather-icons/wind.png" alt="">
-              <h4>Wind</h4>
-              <h3 id="wind">30º</h3>
+              <h4 class="bold">Wind</h4>
+              <h3 class="bold" id="wind">30º</h3>
             </div>
           </div>
           <div class="main__current--others--container">
             <div class="main__current--others--box">
               <img src="./assets/images/weather-icons/humidity.png" alt="">
-              <h4>Humidity</h4>
-              <h3 id="humidity">30º</h3>
+              <h4 class="bold">Humidity</h4>
+              <h3 class="bold" id="humidity">30º</h3>
             </div>
             <div class="main__current--others--box">
               <img src="./assets/images/weather-icons/clouds.png" alt="">
-              <h4>Clouds</h4>
-              <h3 id="clouds">30º</h3>
+              <h4 class="bold">Clouds</h4>
+              <h3 class="bold" id="clouds">30º</h3>
             </div>
           </div>
         </div>
 
       </div>
-      <div class="main__forecast" id="main-forecast-container">
-        <h4>5-DAY FORECAST</h4>
-      </div>
+      <div class="main__forecast" id="main-forecast">
+        <h4 class="bold">5-DAY FORECAST</h4>
+        <div class="btn-dark-mode">
+          <input type="checkbox" id="btn-dark-mode" class="button-input">
+          <label for="btn-dark-mode" class="btn-switch"></label>
+        </div>
       </div>
   </div>
 
