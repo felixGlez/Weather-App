@@ -63,6 +63,9 @@ const units_metric = '&units=metric';
 const madridId = 3117732;
 const londonId = 2643743;
 const tokyoId = 1850147;
+const sydneyId = 2147714;
+const rioDeJaneiroId = 3451190;
+const nyId = 5128581;
 
 const API_URLS = {
   currentWeather_madrid: `${BASE_URL}data/2.5/weather?id=${madridId}&appid=${API_KEY}${units_metric}`,
@@ -73,6 +76,15 @@ const API_URLS = {
 
   currentWeather_london: `${BASE_URL}data/2.5/weather?id=${londonId}&appid=${API_KEY}${units_metric}`,
   currentForecast_london: `${BASE_URL}data/2.5/forecast?id=${londonId}&appid=${API_KEY}${units_metric}`,
+
+  currentWeather_sydney: `${BASE_URL}data/2.5/weather?id=${sydneyId}&appid=${API_KEY}${units_metric}`,
+  currentForecast_sydney: `${BASE_URL}data/2.5/forecast?id=${sydneyId}&appid=${API_KEY}${units_metric}`,
+
+  currentWeather_rio: `${BASE_URL}data/2.5/weather?id=${rioDeJaneiroId}&appid=${API_KEY}${units_metric}`,
+  currentForecast_rio: `${BASE_URL}data/2.5/forecast?id=${rioDeJaneiroId}&appid=${API_KEY}${units_metric}`,
+
+  currentWeather_ny: `${BASE_URL}data/2.5/weather?id=${nyId}&appid=${API_KEY}${units_metric}`,
+  currentForecast_ny: `${BASE_URL}data/2.5/forecast?id=${nyId}&appid=${API_KEY}${units_metric}`,
 };
 
 const images = {
@@ -102,7 +114,6 @@ const fetchData = async url => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    //console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -140,7 +151,6 @@ const getCurrentForecast = async city => {
 
 //pintar pronóstico de hoy
 const printCurrentForecast = async forecast => {
-  console.log(forecast);
   const newDiv = document.createElement('div');
   newDiv.classList.add('main__current--forecast--hours');
   newDiv.id = 'current-forecast-container';
@@ -173,8 +183,8 @@ const printCurrentForecast = async forecast => {
 
 //formatear hora
 const getFormattedTime = timestamp => {
-  const fecha = new Date(timestamp);
-  return fecha.toLocaleTimeString('en-US', {
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
   });
@@ -194,7 +204,6 @@ const get5DaysForecast = async data => {
 
   for (let i = 0; i < data.list.length; i += 8) {
     daysForecast.push(data.list[i]);
-    //console.log(data.list[i].dt_txt);
   }
 
   print5DaysForecast(daysForecast);
@@ -202,7 +211,6 @@ const get5DaysForecast = async data => {
 
 //pintar datos 6 DÍAS
 const print5DaysForecast = async data => {
-  console.log(data);
   const newContainer = document.createElement('div');
   newContainer.classList.add('main__forecast--container');
   newContainer.id = 'main-forecast-container';
@@ -247,7 +255,7 @@ const getFormattedDays = date => {
   return correctDay;
 };
 
-//switch dark/light mode
+//cambiar dark/light mode
 const switchMode = () => {
   document.body.classList.toggle('dark-mode');
 };
@@ -287,5 +295,29 @@ citiesElement.addEventListener('click', event => {
       mainForecastContainerElement.remove();
     }
     printCurrentWeather('madrid');
+  } else if (event.target.closest('#sydney')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('sydney');
+  } else if (event.target.closest('#rio')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('rio');
+  } else if (event.target.closest('#ny')) {
+    if (currentForecastContainer) {
+      currentForecastContainer.remove();
+    }
+    if (mainForecastContainerElement) {
+      mainForecastContainerElement.remove();
+    }
+    printCurrentWeather('ny');
   }
 });
