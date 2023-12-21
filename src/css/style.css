@@ -342,9 +342,10 @@ h1, h2, h3, h4{
   .cities{
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
   }
   .cities__city{
-    width: 25%;
+    width: 28%;
   }
   .main--img{
     width: 235px;
